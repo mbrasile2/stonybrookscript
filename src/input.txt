@@ -1,0 +1,11 @@
+{
+    z = 1;
+    list = [1,2,3];
+    print(list[z]);
+
+    if (z > 1) {
+        print("SDFSD");
+    }
+
+
+}

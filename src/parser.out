@@ -1,0 +1,2661 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    IN
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> block
+Rule 2     block -> LCURLYBRACE RCURLYBRACE
+Rule 3     block -> LCURLYBRACE stmt_tail RCURLYBRACE
+Rule 4     stmt_tail -> stmt
+Rule 5     stmt_tail -> stmt stmt_tail
+Rule 6     stmt -> while
+Rule 7     stmt -> assignment
+Rule 8     stmt -> conditional
+Rule 9     stmt -> print
+Rule 10    print -> PRINT LPAREN expr RPAREN SEMICOLON
+Rule 11    assignment -> VARIABLE EQUALS expr SEMICOLON
+Rule 12    while -> WHILE LPAREN expression RPAREN block
+Rule 13    conditional -> IF LPAREN expression RPAREN block
+Rule 14    conditional -> IF LPAREN expression RPAREN block else_if_blocks
+Rule 15    else_if_blocks -> else_if_block
+Rule 16    else_if_blocks -> else_if_block else_if_blocks
+Rule 17    else_if_block -> ELSE block
+Rule 18    expr -> LBRACKET list_elem RBRACKET
+Rule 19    expr -> expr LBRACKET expression RBRACKET
+Rule 20    expr -> LBRACKET RBRACKET
+Rule 21    expr -> expression
+Rule 22    list_elem -> expr list_tail
+Rule 23    list_tail -> COMMA expr list_tail
+Rule 24    list_tail -> <empty>
+Rule 25    expr -> LPAREN expr RPAREN
+Rule 26    expression -> expression LT expression
+Rule 27    expression -> expression LTEQ expression
+Rule 28    expression -> expression EQ expression
+Rule 29    expression -> expression NOTEQ expression
+Rule 30    expression -> expression GT expression
+Rule 31    expression -> expression GTEQ expression
+Rule 32    expression -> expression AND expression
+Rule 33    expression -> expression OR expression
+Rule 34    expression -> expression NOT expression
+Rule 35    expression -> expression PLUS expression
+Rule 36    expression -> expression MINUS expression
+Rule 37    expression -> expression TIMES expression
+Rule 38    expression -> expression DIVIDE expression
+Rule 39    expression -> expression FDIV expression
+Rule 40    expression -> expression EXP expression
+Rule 41    expression -> expression MOD expression
+Rule 42    expression -> factor
+Rule 43    expression -> string
+Rule 44    expression -> VARIABLE
+Rule 45    factor -> NUMBER
+Rule 46    string -> STRING
+
+Terminals, with rules where they appear
+
+AND                  : 32
+COMMA                : 23
+DIVIDE               : 38
+ELSE                 : 17
+EQ                   : 28
+EQUALS               : 11
+EXP                  : 40
+FDIV                 : 39
+GT                   : 30
+GTEQ                 : 31
+IF                   : 13 14
+IN                   : 
+LBRACKET             : 18 19 20
+LCURLYBRACE          : 2 3
+LPAREN               : 10 12 13 14 25
+LT                   : 26
+LTEQ                 : 27
+MINUS                : 36
+MOD                  : 41
+NOT                  : 34
+NOTEQ                : 29
+NUMBER               : 45
+OR                   : 33
+PLUS                 : 35
+PRINT                : 10
+RBRACKET             : 18 19 20
+RCURLYBRACE          : 2 3
+RPAREN               : 10 12 13 14 25
+SEMICOLON            : 10 11
+STRING               : 46
+TIMES                : 37
+VARIABLE             : 11 44
+WHILE                : 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 7
+block                : 1 12 13 14 17
+conditional          : 8
+else_if_block        : 15 16
+else_if_blocks       : 14 16
+expr                 : 10 11 19 22 23 25
+expression           : 12 13 14 19 21 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41
+factor               : 42
+list_elem            : 18
+list_tail            : 22 23
+print                : 9
+start                : 0
+stmt                 : 4 5
+stmt_tail            : 3 5
+string               : 43
+while                : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . block
+    (2) block -> . LCURLYBRACE RCURLYBRACE
+    (3) block -> . LCURLYBRACE stmt_tail RCURLYBRACE
+
+    LCURLYBRACE     shift and go to state 1
+
+    block                          shift and go to state 2
+    start                          shift and go to state 3
+
+state 1
+
+    (2) block -> LCURLYBRACE . RCURLYBRACE
+    (3) block -> LCURLYBRACE . stmt_tail RCURLYBRACE
+    (4) stmt_tail -> . stmt
+    (5) stmt_tail -> . stmt stmt_tail
+    (6) stmt -> . while
+    (7) stmt -> . assignment
+    (8) stmt -> . conditional
+    (9) stmt -> . print
+    (12) while -> . WHILE LPAREN expression RPAREN block
+    (11) assignment -> . VARIABLE EQUALS expr SEMICOLON
+    (13) conditional -> . IF LPAREN expression RPAREN block
+    (14) conditional -> . IF LPAREN expression RPAREN block else_if_blocks
+    (10) print -> . PRINT LPAREN expr RPAREN SEMICOLON
+
+    RCURLYBRACE     shift and go to state 8
+    WHILE           shift and go to state 12
+    VARIABLE        shift and go to state 7
+    IF              shift and go to state 4
+    PRINT           shift and go to state 10
+
+    conditional                    shift and go to state 11
+    stmt_tail                      shift and go to state 5
+    stmt                           shift and go to state 6
+    print                          shift and go to state 13
+    while                          shift and go to state 14
+    assignment                     shift and go to state 9
+
+state 2
+
+    (1) start -> block .
+
+    $end            reduce using rule 1 (start -> block .)
+
+
+state 3
+
+    (0) S' -> start .
+
+
+
+state 4
+
+    (13) conditional -> IF . LPAREN expression RPAREN block
+    (14) conditional -> IF . LPAREN expression RPAREN block else_if_blocks
+
+    LPAREN          shift and go to state 15
+
+
+state 5
+
+    (3) block -> LCURLYBRACE stmt_tail . RCURLYBRACE
+
+    RCURLYBRACE     shift and go to state 16
+
+
+state 6
+
+    (4) stmt_tail -> stmt .
+    (5) stmt_tail -> stmt . stmt_tail
+    (4) stmt_tail -> . stmt
+    (5) stmt_tail -> . stmt stmt_tail
+    (6) stmt -> . while
+    (7) stmt -> . assignment
+    (8) stmt -> . conditional
+    (9) stmt -> . print
+    (12) while -> . WHILE LPAREN expression RPAREN block
+    (11) assignment -> . VARIABLE EQUALS expr SEMICOLON
+    (13) conditional -> . IF LPAREN expression RPAREN block
+    (14) conditional -> . IF LPAREN expression RPAREN block else_if_blocks
+    (10) print -> . PRINT LPAREN expr RPAREN SEMICOLON
+
+    RCURLYBRACE     reduce using rule 4 (stmt_tail -> stmt .)
+    WHILE           shift and go to state 12
+    VARIABLE        shift and go to state 7
+    IF              shift and go to state 4
+    PRINT           shift and go to state 10
+
+    conditional                    shift and go to state 11
+    stmt_tail                      shift and go to state 17
+    stmt                           shift and go to state 6
+    print                          shift and go to state 13
+    while                          shift and go to state 14
+    assignment                     shift and go to state 9
+
+state 7
+
+    (11) assignment -> VARIABLE . EQUALS expr SEMICOLON
+
+    EQUALS          shift and go to state 18
+
+
+state 8
+
+    (2) block -> LCURLYBRACE RCURLYBRACE .
+
+    WHILE           reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    VARIABLE        reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    IF              reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    PRINT           reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    RCURLYBRACE     reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    ELSE            reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+    $end            reduce using rule 2 (block -> LCURLYBRACE RCURLYBRACE .)
+
+
+state 9
+
+    (7) stmt -> assignment .
+
+    WHILE           reduce using rule 7 (stmt -> assignment .)
+    VARIABLE        reduce using rule 7 (stmt -> assignment .)
+    IF              reduce using rule 7 (stmt -> assignment .)
+    PRINT           reduce using rule 7 (stmt -> assignment .)
+    RCURLYBRACE     reduce using rule 7 (stmt -> assignment .)
+
+
+state 10
+
+    (10) print -> PRINT . LPAREN expr RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 19
+
+
+state 11
+
+    (8) stmt -> conditional .
+
+    WHILE           reduce using rule 8 (stmt -> conditional .)
+    VARIABLE        reduce using rule 8 (stmt -> conditional .)
+    IF              reduce using rule 8 (stmt -> conditional .)
+    PRINT           reduce using rule 8 (stmt -> conditional .)
+    RCURLYBRACE     reduce using rule 8 (stmt -> conditional .)
+
+
+state 12
+
+    (12) while -> WHILE . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 20
+
+
+state 13
+
+    (9) stmt -> print .
+
+    WHILE           reduce using rule 9 (stmt -> print .)
+    VARIABLE        reduce using rule 9 (stmt -> print .)
+    IF              reduce using rule 9 (stmt -> print .)
+    PRINT           reduce using rule 9 (stmt -> print .)
+    RCURLYBRACE     reduce using rule 9 (stmt -> print .)
+
+
+state 14
+
+    (6) stmt -> while .
+
+    WHILE           reduce using rule 6 (stmt -> while .)
+    VARIABLE        reduce using rule 6 (stmt -> while .)
+    IF              reduce using rule 6 (stmt -> while .)
+    PRINT           reduce using rule 6 (stmt -> while .)
+    RCURLYBRACE     reduce using rule 6 (stmt -> while .)
+
+
+state 15
+
+    (13) conditional -> IF LPAREN . expression RPAREN block
+    (14) conditional -> IF LPAREN . expression RPAREN block else_if_blocks
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 23
+
+state 16
+
+    (3) block -> LCURLYBRACE stmt_tail RCURLYBRACE .
+
+    WHILE           reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    VARIABLE        reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    IF              reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    PRINT           reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    RCURLYBRACE     reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    ELSE            reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+    $end            reduce using rule 3 (block -> LCURLYBRACE stmt_tail RCURLYBRACE .)
+
+
+state 17
+
+    (5) stmt_tail -> stmt stmt_tail .
+
+    RCURLYBRACE     reduce using rule 5 (stmt_tail -> stmt stmt_tail .)
+
+
+state 18
+
+    (11) assignment -> VARIABLE EQUALS . expr SEMICOLON
+    (18) expr -> . LBRACKET list_elem RBRACKET
+    (19) expr -> . expr LBRACKET expression RBRACKET
+    (20) expr -> . LBRACKET RBRACKET
+    (21) expr -> . expression
+    (25) expr -> . LPAREN expr RPAREN
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    LBRACKET        shift and go to state 28
+    LPAREN          shift and go to state 27
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expr                           shift and go to state 30
+    expression                     shift and go to state 29
+
+state 19
+
+    (10) print -> PRINT LPAREN . expr RPAREN SEMICOLON
+    (18) expr -> . LBRACKET list_elem RBRACKET
+    (19) expr -> . expr LBRACKET expression RBRACKET
+    (20) expr -> . LBRACKET RBRACKET
+    (21) expr -> . expression
+    (25) expr -> . LPAREN expr RPAREN
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    LBRACKET        shift and go to state 28
+    LPAREN          shift and go to state 27
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expr                           shift and go to state 31
+    expression                     shift and go to state 29
+
+state 20
+
+    (12) while -> WHILE LPAREN . expression RPAREN block
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 32
+
+state 21
+
+    (44) expression -> VARIABLE .
+
+    LT              reduce using rule 44 (expression -> VARIABLE .)
+    LTEQ            reduce using rule 44 (expression -> VARIABLE .)
+    EQ              reduce using rule 44 (expression -> VARIABLE .)
+    NOTEQ           reduce using rule 44 (expression -> VARIABLE .)
+    GT              reduce using rule 44 (expression -> VARIABLE .)
+    GTEQ            reduce using rule 44 (expression -> VARIABLE .)
+    AND             reduce using rule 44 (expression -> VARIABLE .)
+    OR              reduce using rule 44 (expression -> VARIABLE .)
+    NOT             reduce using rule 44 (expression -> VARIABLE .)
+    PLUS            reduce using rule 44 (expression -> VARIABLE .)
+    MINUS           reduce using rule 44 (expression -> VARIABLE .)
+    TIMES           reduce using rule 44 (expression -> VARIABLE .)
+    DIVIDE          reduce using rule 44 (expression -> VARIABLE .)
+    FDIV            reduce using rule 44 (expression -> VARIABLE .)
+    EXP             reduce using rule 44 (expression -> VARIABLE .)
+    MOD             reduce using rule 44 (expression -> VARIABLE .)
+    RPAREN          reduce using rule 44 (expression -> VARIABLE .)
+    SEMICOLON       reduce using rule 44 (expression -> VARIABLE .)
+    LBRACKET        reduce using rule 44 (expression -> VARIABLE .)
+    COMMA           reduce using rule 44 (expression -> VARIABLE .)
+    RBRACKET        reduce using rule 44 (expression -> VARIABLE .)
+
+
+state 22
+
+    (46) string -> STRING .
+
+    RPAREN          reduce using rule 46 (string -> STRING .)
+    LT              reduce using rule 46 (string -> STRING .)
+    LTEQ            reduce using rule 46 (string -> STRING .)
+    EQ              reduce using rule 46 (string -> STRING .)
+    NOTEQ           reduce using rule 46 (string -> STRING .)
+    GT              reduce using rule 46 (string -> STRING .)
+    GTEQ            reduce using rule 46 (string -> STRING .)
+    AND             reduce using rule 46 (string -> STRING .)
+    OR              reduce using rule 46 (string -> STRING .)
+    NOT             reduce using rule 46 (string -> STRING .)
+    PLUS            reduce using rule 46 (string -> STRING .)
+    MINUS           reduce using rule 46 (string -> STRING .)
+    TIMES           reduce using rule 46 (string -> STRING .)
+    DIVIDE          reduce using rule 46 (string -> STRING .)
+    FDIV            reduce using rule 46 (string -> STRING .)
+    EXP             reduce using rule 46 (string -> STRING .)
+    MOD             reduce using rule 46 (string -> STRING .)
+    SEMICOLON       reduce using rule 46 (string -> STRING .)
+    LBRACKET        reduce using rule 46 (string -> STRING .)
+    COMMA           reduce using rule 46 (string -> STRING .)
+    RBRACKET        reduce using rule 46 (string -> STRING .)
+
+
+state 23
+
+    (13) conditional -> IF LPAREN expression . RPAREN block
+    (14) conditional -> IF LPAREN expression . RPAREN block else_if_blocks
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    RPAREN          shift and go to state 49
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    AND             shift and go to state 48
+    OR              shift and go to state 38
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+
+state 24
+
+    (43) expression -> string .
+
+    LT              reduce using rule 43 (expression -> string .)
+    LTEQ            reduce using rule 43 (expression -> string .)
+    EQ              reduce using rule 43 (expression -> string .)
+    NOTEQ           reduce using rule 43 (expression -> string .)
+    GT              reduce using rule 43 (expression -> string .)
+    GTEQ            reduce using rule 43 (expression -> string .)
+    AND             reduce using rule 43 (expression -> string .)
+    OR              reduce using rule 43 (expression -> string .)
+    NOT             reduce using rule 43 (expression -> string .)
+    PLUS            reduce using rule 43 (expression -> string .)
+    MINUS           reduce using rule 43 (expression -> string .)
+    TIMES           reduce using rule 43 (expression -> string .)
+    DIVIDE          reduce using rule 43 (expression -> string .)
+    FDIV            reduce using rule 43 (expression -> string .)
+    EXP             reduce using rule 43 (expression -> string .)
+    MOD             reduce using rule 43 (expression -> string .)
+    RPAREN          reduce using rule 43 (expression -> string .)
+    SEMICOLON       reduce using rule 43 (expression -> string .)
+    LBRACKET        reduce using rule 43 (expression -> string .)
+    COMMA           reduce using rule 43 (expression -> string .)
+    RBRACKET        reduce using rule 43 (expression -> string .)
+
+
+state 25
+
+    (42) expression -> factor .
+
+    LT              reduce using rule 42 (expression -> factor .)
+    LTEQ            reduce using rule 42 (expression -> factor .)
+    EQ              reduce using rule 42 (expression -> factor .)
+    NOTEQ           reduce using rule 42 (expression -> factor .)
+    GT              reduce using rule 42 (expression -> factor .)
+    GTEQ            reduce using rule 42 (expression -> factor .)
+    AND             reduce using rule 42 (expression -> factor .)
+    OR              reduce using rule 42 (expression -> factor .)
+    NOT             reduce using rule 42 (expression -> factor .)
+    PLUS            reduce using rule 42 (expression -> factor .)
+    MINUS           reduce using rule 42 (expression -> factor .)
+    TIMES           reduce using rule 42 (expression -> factor .)
+    DIVIDE          reduce using rule 42 (expression -> factor .)
+    FDIV            reduce using rule 42 (expression -> factor .)
+    EXP             reduce using rule 42 (expression -> factor .)
+    MOD             reduce using rule 42 (expression -> factor .)
+    RPAREN          reduce using rule 42 (expression -> factor .)
+    SEMICOLON       reduce using rule 42 (expression -> factor .)
+    LBRACKET        reduce using rule 42 (expression -> factor .)
+    COMMA           reduce using rule 42 (expression -> factor .)
+    RBRACKET        reduce using rule 42 (expression -> factor .)
+
+
+state 26
+
+    (45) factor -> NUMBER .
+
+    LT              reduce using rule 45 (factor -> NUMBER .)
+    LTEQ            reduce using rule 45 (factor -> NUMBER .)
+    EQ              reduce using rule 45 (factor -> NUMBER .)
+    NOTEQ           reduce using rule 45 (factor -> NUMBER .)
+    GT              reduce using rule 45 (factor -> NUMBER .)
+    GTEQ            reduce using rule 45 (factor -> NUMBER .)
+    AND             reduce using rule 45 (factor -> NUMBER .)
+    OR              reduce using rule 45 (factor -> NUMBER .)
+    NOT             reduce using rule 45 (factor -> NUMBER .)
+    PLUS            reduce using rule 45 (factor -> NUMBER .)
+    MINUS           reduce using rule 45 (factor -> NUMBER .)
+    TIMES           reduce using rule 45 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 45 (factor -> NUMBER .)
+    FDIV            reduce using rule 45 (factor -> NUMBER .)
+    EXP             reduce using rule 45 (factor -> NUMBER .)
+    MOD             reduce using rule 45 (factor -> NUMBER .)
+    RPAREN          reduce using rule 45 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 45 (factor -> NUMBER .)
+    LBRACKET        reduce using rule 45 (factor -> NUMBER .)
+    COMMA           reduce using rule 45 (factor -> NUMBER .)
+    RBRACKET        reduce using rule 45 (factor -> NUMBER .)
+
+
+state 27
+
+    (25) expr -> LPAREN . expr RPAREN
+    (18) expr -> . LBRACKET list_elem RBRACKET
+    (19) expr -> . expr LBRACKET expression RBRACKET
+    (20) expr -> . LBRACKET RBRACKET
+    (21) expr -> . expression
+    (25) expr -> . LPAREN expr RPAREN
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    LBRACKET        shift and go to state 28
+    LPAREN          shift and go to state 27
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expr                           shift and go to state 50
+    expression                     shift and go to state 29
+
+state 28
+
+    (18) expr -> LBRACKET . list_elem RBRACKET
+    (20) expr -> LBRACKET . RBRACKET
+    (22) list_elem -> . expr list_tail
+    (18) expr -> . LBRACKET list_elem RBRACKET
+    (19) expr -> . expr LBRACKET expression RBRACKET
+    (20) expr -> . LBRACKET RBRACKET
+    (21) expr -> . expression
+    (25) expr -> . LPAREN expr RPAREN
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    RBRACKET        shift and go to state 52
+    LBRACKET        shift and go to state 28
+    LPAREN          shift and go to state 27
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    expr                           shift and go to state 53
+    list_elem                      shift and go to state 51
+    expression                     shift and go to state 29
+    factor                         shift and go to state 25
+
+state 29
+
+    (21) expr -> expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    RPAREN          reduce using rule 21 (expr -> expression .)
+    LBRACKET        reduce using rule 21 (expr -> expression .)
+    COMMA           reduce using rule 21 (expr -> expression .)
+    RBRACKET        reduce using rule 21 (expr -> expression .)
+    SEMICOLON       reduce using rule 21 (expr -> expression .)
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    AND             shift and go to state 48
+    OR              shift and go to state 38
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+
+state 30
+
+    (11) assignment -> VARIABLE EQUALS expr . SEMICOLON
+    (19) expr -> expr . LBRACKET expression RBRACKET
+
+    SEMICOLON       shift and go to state 55
+    LBRACKET        shift and go to state 54
+
+
+state 31
+
+    (10) print -> PRINT LPAREN expr . RPAREN SEMICOLON
+    (19) expr -> expr . LBRACKET expression RBRACKET
+
+    RPAREN          shift and go to state 56
+    LBRACKET        shift and go to state 54
+
+
+state 32
+
+    (12) while -> WHILE LPAREN expression . RPAREN block
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    RPAREN          shift and go to state 57
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    AND             shift and go to state 48
+    OR              shift and go to state 38
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+
+state 33
+
+    (36) expression -> expression MINUS . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 58
+
+state 34
+
+    (26) expression -> expression LT . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 59
+
+state 35
+
+    (37) expression -> expression TIMES . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 60
+
+state 36
+
+    (28) expression -> expression EQ . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 61
+
+state 37
+
+    (27) expression -> expression LTEQ . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 62
+
+state 38
+
+    (33) expression -> expression OR . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 63
+
+state 39
+
+    (38) expression -> expression DIVIDE . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 64
+
+state 40
+
+    (39) expression -> expression FDIV . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 65
+
+state 41
+
+    (30) expression -> expression GT . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 66
+
+state 42
+
+    (40) expression -> expression EXP . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 67
+
+state 43
+
+    (34) expression -> expression NOT . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 68
+
+state 44
+
+    (35) expression -> expression PLUS . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 69
+
+state 45
+
+    (29) expression -> expression NOTEQ . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 70
+
+state 46
+
+    (41) expression -> expression MOD . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 71
+
+state 47
+
+    (31) expression -> expression GTEQ . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 72
+
+state 48
+
+    (32) expression -> expression AND . expression
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 73
+
+state 49
+
+    (13) conditional -> IF LPAREN expression RPAREN . block
+    (14) conditional -> IF LPAREN expression RPAREN . block else_if_blocks
+    (2) block -> . LCURLYBRACE RCURLYBRACE
+    (3) block -> . LCURLYBRACE stmt_tail RCURLYBRACE
+
+    LCURLYBRACE     shift and go to state 1
+
+    block                          shift and go to state 74
+
+state 50
+
+    (25) expr -> LPAREN expr . RPAREN
+    (19) expr -> expr . LBRACKET expression RBRACKET
+
+    RPAREN          shift and go to state 75
+    LBRACKET        shift and go to state 54
+
+
+state 51
+
+    (18) expr -> LBRACKET list_elem . RBRACKET
+
+    RBRACKET        shift and go to state 76
+
+
+state 52
+
+    (20) expr -> LBRACKET RBRACKET .
+
+    RPAREN          reduce using rule 20 (expr -> LBRACKET RBRACKET .)
+    LBRACKET        reduce using rule 20 (expr -> LBRACKET RBRACKET .)
+    COMMA           reduce using rule 20 (expr -> LBRACKET RBRACKET .)
+    RBRACKET        reduce using rule 20 (expr -> LBRACKET RBRACKET .)
+    SEMICOLON       reduce using rule 20 (expr -> LBRACKET RBRACKET .)
+
+
+state 53
+
+    (22) list_elem -> expr . list_tail
+    (19) expr -> expr . LBRACKET expression RBRACKET
+    (23) list_tail -> . COMMA expr list_tail
+    (24) list_tail -> .
+
+    LBRACKET        shift and go to state 54
+    COMMA           shift and go to state 77
+    RBRACKET        reduce using rule 24 (list_tail -> .)
+
+    list_tail                      shift and go to state 78
+
+state 54
+
+    (19) expr -> expr LBRACKET . expression RBRACKET
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    factor                         shift and go to state 25
+    expression                     shift and go to state 79
+
+state 55
+
+    (11) assignment -> VARIABLE EQUALS expr SEMICOLON .
+
+    WHILE           reduce using rule 11 (assignment -> VARIABLE EQUALS expr SEMICOLON .)
+    VARIABLE        reduce using rule 11 (assignment -> VARIABLE EQUALS expr SEMICOLON .)
+    IF              reduce using rule 11 (assignment -> VARIABLE EQUALS expr SEMICOLON .)
+    PRINT           reduce using rule 11 (assignment -> VARIABLE EQUALS expr SEMICOLON .)
+    RCURLYBRACE     reduce using rule 11 (assignment -> VARIABLE EQUALS expr SEMICOLON .)
+
+
+state 56
+
+    (10) print -> PRINT LPAREN expr RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 80
+
+
+state 57
+
+    (12) while -> WHILE LPAREN expression RPAREN . block
+    (2) block -> . LCURLYBRACE RCURLYBRACE
+    (3) block -> . LCURLYBRACE stmt_tail RCURLYBRACE
+
+    LCURLYBRACE     shift and go to state 1
+
+    block                          shift and go to state 81
+
+state 58
+
+    (36) expression -> expression MINUS expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 36 (expression -> expression MINUS expression .)
+    LTEQ            reduce using rule 36 (expression -> expression MINUS expression .)
+    EQ              reduce using rule 36 (expression -> expression MINUS expression .)
+    NOTEQ           reduce using rule 36 (expression -> expression MINUS expression .)
+    GT              reduce using rule 36 (expression -> expression MINUS expression .)
+    GTEQ            reduce using rule 36 (expression -> expression MINUS expression .)
+    AND             reduce using rule 36 (expression -> expression MINUS expression .)
+    OR              reduce using rule 36 (expression -> expression MINUS expression .)
+    NOT             reduce using rule 36 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 36 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 36 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 36 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 36 (expression -> expression MINUS expression .)
+    LBRACKET        reduce using rule 36 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 36 (expression -> expression MINUS expression .)
+    RBRACKET        reduce using rule 36 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! TIMES           [ reduce using rule 36 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 36 (expression -> expression MINUS expression .) ]
+  ! FDIV            [ reduce using rule 36 (expression -> expression MINUS expression .) ]
+  ! EXP             [ reduce using rule 36 (expression -> expression MINUS expression .) ]
+  ! MOD             [ reduce using rule 36 (expression -> expression MINUS expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+
+
+state 59
+
+    (26) expression -> expression LT expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 26 (expression -> expression LT expression .)
+    LTEQ            reduce using rule 26 (expression -> expression LT expression .)
+    EQ              reduce using rule 26 (expression -> expression LT expression .)
+    NOTEQ           reduce using rule 26 (expression -> expression LT expression .)
+    GT              reduce using rule 26 (expression -> expression LT expression .)
+    GTEQ            reduce using rule 26 (expression -> expression LT expression .)
+    AND             reduce using rule 26 (expression -> expression LT expression .)
+    OR              reduce using rule 26 (expression -> expression LT expression .)
+    NOT             reduce using rule 26 (expression -> expression LT expression .)
+    RPAREN          reduce using rule 26 (expression -> expression LT expression .)
+    SEMICOLON       reduce using rule 26 (expression -> expression LT expression .)
+    LBRACKET        reduce using rule 26 (expression -> expression LT expression .)
+    COMMA           reduce using rule 26 (expression -> expression LT expression .)
+    RBRACKET        reduce using rule 26 (expression -> expression LT expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! TIMES           [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! DIVIDE          [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! FDIV            [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! EXP             [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! MOD             [ reduce using rule 26 (expression -> expression LT expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 60
+
+    (37) expression -> expression TIMES expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 37 (expression -> expression TIMES expression .)
+    LTEQ            reduce using rule 37 (expression -> expression TIMES expression .)
+    EQ              reduce using rule 37 (expression -> expression TIMES expression .)
+    NOTEQ           reduce using rule 37 (expression -> expression TIMES expression .)
+    GT              reduce using rule 37 (expression -> expression TIMES expression .)
+    GTEQ            reduce using rule 37 (expression -> expression TIMES expression .)
+    AND             reduce using rule 37 (expression -> expression TIMES expression .)
+    OR              reduce using rule 37 (expression -> expression TIMES expression .)
+    NOT             reduce using rule 37 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 37 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 37 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 37 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 37 (expression -> expression TIMES expression .)
+    FDIV            reduce using rule 37 (expression -> expression TIMES expression .)
+    EXP             reduce using rule 37 (expression -> expression TIMES expression .)
+    MOD             reduce using rule 37 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 37 (expression -> expression TIMES expression .)
+    SEMICOLON       reduce using rule 37 (expression -> expression TIMES expression .)
+    LBRACKET        reduce using rule 37 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 37 (expression -> expression TIMES expression .)
+    RBRACKET        reduce using rule 37 (expression -> expression TIMES expression .)
+
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+  ! TIMES           [ shift and go to state 35 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! FDIV            [ shift and go to state 40 ]
+  ! EXP             [ shift and go to state 42 ]
+  ! MOD             [ shift and go to state 46 ]
+
+
+state 61
+
+    (28) expression -> expression EQ expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 28 (expression -> expression EQ expression .)
+    LTEQ            reduce using rule 28 (expression -> expression EQ expression .)
+    EQ              reduce using rule 28 (expression -> expression EQ expression .)
+    NOTEQ           reduce using rule 28 (expression -> expression EQ expression .)
+    GT              reduce using rule 28 (expression -> expression EQ expression .)
+    GTEQ            reduce using rule 28 (expression -> expression EQ expression .)
+    AND             reduce using rule 28 (expression -> expression EQ expression .)
+    OR              reduce using rule 28 (expression -> expression EQ expression .)
+    NOT             reduce using rule 28 (expression -> expression EQ expression .)
+    RPAREN          reduce using rule 28 (expression -> expression EQ expression .)
+    SEMICOLON       reduce using rule 28 (expression -> expression EQ expression .)
+    LBRACKET        reduce using rule 28 (expression -> expression EQ expression .)
+    COMMA           reduce using rule 28 (expression -> expression EQ expression .)
+    RBRACKET        reduce using rule 28 (expression -> expression EQ expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! TIMES           [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! DIVIDE          [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! FDIV            [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! EXP             [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! MOD             [ reduce using rule 28 (expression -> expression EQ expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 62
+
+    (27) expression -> expression LTEQ expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 27 (expression -> expression LTEQ expression .)
+    LTEQ            reduce using rule 27 (expression -> expression LTEQ expression .)
+    EQ              reduce using rule 27 (expression -> expression LTEQ expression .)
+    NOTEQ           reduce using rule 27 (expression -> expression LTEQ expression .)
+    GT              reduce using rule 27 (expression -> expression LTEQ expression .)
+    GTEQ            reduce using rule 27 (expression -> expression LTEQ expression .)
+    AND             reduce using rule 27 (expression -> expression LTEQ expression .)
+    OR              reduce using rule 27 (expression -> expression LTEQ expression .)
+    NOT             reduce using rule 27 (expression -> expression LTEQ expression .)
+    RPAREN          reduce using rule 27 (expression -> expression LTEQ expression .)
+    SEMICOLON       reduce using rule 27 (expression -> expression LTEQ expression .)
+    LBRACKET        reduce using rule 27 (expression -> expression LTEQ expression .)
+    COMMA           reduce using rule 27 (expression -> expression LTEQ expression .)
+    RBRACKET        reduce using rule 27 (expression -> expression LTEQ expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! MINUS           [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! TIMES           [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! FDIV            [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! EXP             [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! MOD             [ reduce using rule 27 (expression -> expression LTEQ expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 63
+
+    (33) expression -> expression OR expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    OR              reduce using rule 33 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 33 (expression -> expression OR expression .)
+    SEMICOLON       reduce using rule 33 (expression -> expression OR expression .)
+    LBRACKET        reduce using rule 33 (expression -> expression OR expression .)
+    COMMA           reduce using rule 33 (expression -> expression OR expression .)
+    RBRACKET        reduce using rule 33 (expression -> expression OR expression .)
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    AND             shift and go to state 48
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! LT              [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! LTEQ            [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! EQ              [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! NOTEQ           [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! GT              [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! GTEQ            [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! NOT             [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! PLUS            [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! FDIV            [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! EXP             [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! MOD             [ reduce using rule 33 (expression -> expression OR expression .) ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 64
+
+    (38) expression -> expression DIVIDE expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 38 (expression -> expression DIVIDE expression .)
+    LTEQ            reduce using rule 38 (expression -> expression DIVIDE expression .)
+    EQ              reduce using rule 38 (expression -> expression DIVIDE expression .)
+    NOTEQ           reduce using rule 38 (expression -> expression DIVIDE expression .)
+    GT              reduce using rule 38 (expression -> expression DIVIDE expression .)
+    GTEQ            reduce using rule 38 (expression -> expression DIVIDE expression .)
+    AND             reduce using rule 38 (expression -> expression DIVIDE expression .)
+    OR              reduce using rule 38 (expression -> expression DIVIDE expression .)
+    NOT             reduce using rule 38 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 38 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 38 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 38 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 38 (expression -> expression DIVIDE expression .)
+    FDIV            reduce using rule 38 (expression -> expression DIVIDE expression .)
+    EXP             reduce using rule 38 (expression -> expression DIVIDE expression .)
+    MOD             reduce using rule 38 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 38 (expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 38 (expression -> expression DIVIDE expression .)
+    LBRACKET        reduce using rule 38 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 38 (expression -> expression DIVIDE expression .)
+    RBRACKET        reduce using rule 38 (expression -> expression DIVIDE expression .)
+
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+  ! TIMES           [ shift and go to state 35 ]
+  ! DIVIDE          [ shift and go to state 39 ]
+  ! FDIV            [ shift and go to state 40 ]
+  ! EXP             [ shift and go to state 42 ]
+  ! MOD             [ shift and go to state 46 ]
+
+
+state 65
+
+    (39) expression -> expression FDIV expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 39 (expression -> expression FDIV expression .)
+    LTEQ            reduce using rule 39 (expression -> expression FDIV expression .)
+    EQ              reduce using rule 39 (expression -> expression FDIV expression .)
+    NOTEQ           reduce using rule 39 (expression -> expression FDIV expression .)
+    GT              reduce using rule 39 (expression -> expression FDIV expression .)
+    GTEQ            reduce using rule 39 (expression -> expression FDIV expression .)
+    AND             reduce using rule 39 (expression -> expression FDIV expression .)
+    OR              reduce using rule 39 (expression -> expression FDIV expression .)
+    NOT             reduce using rule 39 (expression -> expression FDIV expression .)
+    PLUS            reduce using rule 39 (expression -> expression FDIV expression .)
+    MINUS           reduce using rule 39 (expression -> expression FDIV expression .)
+    FDIV            reduce using rule 39 (expression -> expression FDIV expression .)
+    RPAREN          reduce using rule 39 (expression -> expression FDIV expression .)
+    SEMICOLON       reduce using rule 39 (expression -> expression FDIV expression .)
+    LBRACKET        reduce using rule 39 (expression -> expression FDIV expression .)
+    COMMA           reduce using rule 39 (expression -> expression FDIV expression .)
+    RBRACKET        reduce using rule 39 (expression -> expression FDIV expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! TIMES           [ reduce using rule 39 (expression -> expression FDIV expression .) ]
+  ! DIVIDE          [ reduce using rule 39 (expression -> expression FDIV expression .) ]
+  ! EXP             [ reduce using rule 39 (expression -> expression FDIV expression .) ]
+  ! MOD             [ reduce using rule 39 (expression -> expression FDIV expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+  ! FDIV            [ shift and go to state 40 ]
+
+
+state 66
+
+    (30) expression -> expression GT expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 30 (expression -> expression GT expression .)
+    LTEQ            reduce using rule 30 (expression -> expression GT expression .)
+    EQ              reduce using rule 30 (expression -> expression GT expression .)
+    NOTEQ           reduce using rule 30 (expression -> expression GT expression .)
+    GT              reduce using rule 30 (expression -> expression GT expression .)
+    GTEQ            reduce using rule 30 (expression -> expression GT expression .)
+    AND             reduce using rule 30 (expression -> expression GT expression .)
+    OR              reduce using rule 30 (expression -> expression GT expression .)
+    NOT             reduce using rule 30 (expression -> expression GT expression .)
+    RPAREN          reduce using rule 30 (expression -> expression GT expression .)
+    SEMICOLON       reduce using rule 30 (expression -> expression GT expression .)
+    LBRACKET        reduce using rule 30 (expression -> expression GT expression .)
+    COMMA           reduce using rule 30 (expression -> expression GT expression .)
+    RBRACKET        reduce using rule 30 (expression -> expression GT expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! TIMES           [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! DIVIDE          [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! FDIV            [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! EXP             [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! MOD             [ reduce using rule 30 (expression -> expression GT expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 67
+
+    (40) expression -> expression EXP expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 40 (expression -> expression EXP expression .)
+    LTEQ            reduce using rule 40 (expression -> expression EXP expression .)
+    EQ              reduce using rule 40 (expression -> expression EXP expression .)
+    NOTEQ           reduce using rule 40 (expression -> expression EXP expression .)
+    GT              reduce using rule 40 (expression -> expression EXP expression .)
+    GTEQ            reduce using rule 40 (expression -> expression EXP expression .)
+    AND             reduce using rule 40 (expression -> expression EXP expression .)
+    OR              reduce using rule 40 (expression -> expression EXP expression .)
+    NOT             reduce using rule 40 (expression -> expression EXP expression .)
+    PLUS            reduce using rule 40 (expression -> expression EXP expression .)
+    MINUS           reduce using rule 40 (expression -> expression EXP expression .)
+    FDIV            reduce using rule 40 (expression -> expression EXP expression .)
+    EXP             reduce using rule 40 (expression -> expression EXP expression .)
+    RPAREN          reduce using rule 40 (expression -> expression EXP expression .)
+    SEMICOLON       reduce using rule 40 (expression -> expression EXP expression .)
+    LBRACKET        reduce using rule 40 (expression -> expression EXP expression .)
+    COMMA           reduce using rule 40 (expression -> expression EXP expression .)
+    RBRACKET        reduce using rule 40 (expression -> expression EXP expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    MOD             shift and go to state 46
+
+  ! TIMES           [ reduce using rule 40 (expression -> expression EXP expression .) ]
+  ! DIVIDE          [ reduce using rule 40 (expression -> expression EXP expression .) ]
+  ! MOD             [ reduce using rule 40 (expression -> expression EXP expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+  ! FDIV            [ shift and go to state 40 ]
+  ! EXP             [ shift and go to state 42 ]
+
+
+state 68
+
+    (34) expression -> expression NOT expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    AND             reduce using rule 34 (expression -> expression NOT expression .)
+    OR              reduce using rule 34 (expression -> expression NOT expression .)
+    NOT             reduce using rule 34 (expression -> expression NOT expression .)
+    RPAREN          reduce using rule 34 (expression -> expression NOT expression .)
+    SEMICOLON       reduce using rule 34 (expression -> expression NOT expression .)
+    LBRACKET        reduce using rule 34 (expression -> expression NOT expression .)
+    COMMA           reduce using rule 34 (expression -> expression NOT expression .)
+    RBRACKET        reduce using rule 34 (expression -> expression NOT expression .)
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! LT              [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! LTEQ            [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! EQ              [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! NOTEQ           [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! GT              [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! GTEQ            [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! PLUS            [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! MINUS           [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! TIMES           [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! FDIV            [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! EXP             [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! MOD             [ reduce using rule 34 (expression -> expression NOT expression .) ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 69
+
+    (35) expression -> expression PLUS expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 35 (expression -> expression PLUS expression .)
+    LTEQ            reduce using rule 35 (expression -> expression PLUS expression .)
+    EQ              reduce using rule 35 (expression -> expression PLUS expression .)
+    NOTEQ           reduce using rule 35 (expression -> expression PLUS expression .)
+    GT              reduce using rule 35 (expression -> expression PLUS expression .)
+    GTEQ            reduce using rule 35 (expression -> expression PLUS expression .)
+    AND             reduce using rule 35 (expression -> expression PLUS expression .)
+    OR              reduce using rule 35 (expression -> expression PLUS expression .)
+    NOT             reduce using rule 35 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 35 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 35 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 35 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 35 (expression -> expression PLUS expression .)
+    LBRACKET        reduce using rule 35 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 35 (expression -> expression PLUS expression .)
+    RBRACKET        reduce using rule 35 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! TIMES           [ reduce using rule 35 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 35 (expression -> expression PLUS expression .) ]
+  ! FDIV            [ reduce using rule 35 (expression -> expression PLUS expression .) ]
+  ! EXP             [ reduce using rule 35 (expression -> expression PLUS expression .) ]
+  ! MOD             [ reduce using rule 35 (expression -> expression PLUS expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+
+
+state 70
+
+    (29) expression -> expression NOTEQ expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 29 (expression -> expression NOTEQ expression .)
+    LTEQ            reduce using rule 29 (expression -> expression NOTEQ expression .)
+    EQ              reduce using rule 29 (expression -> expression NOTEQ expression .)
+    NOTEQ           reduce using rule 29 (expression -> expression NOTEQ expression .)
+    GT              reduce using rule 29 (expression -> expression NOTEQ expression .)
+    GTEQ            reduce using rule 29 (expression -> expression NOTEQ expression .)
+    AND             reduce using rule 29 (expression -> expression NOTEQ expression .)
+    OR              reduce using rule 29 (expression -> expression NOTEQ expression .)
+    NOT             reduce using rule 29 (expression -> expression NOTEQ expression .)
+    RPAREN          reduce using rule 29 (expression -> expression NOTEQ expression .)
+    SEMICOLON       reduce using rule 29 (expression -> expression NOTEQ expression .)
+    LBRACKET        reduce using rule 29 (expression -> expression NOTEQ expression .)
+    COMMA           reduce using rule 29 (expression -> expression NOTEQ expression .)
+    RBRACKET        reduce using rule 29 (expression -> expression NOTEQ expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! MINUS           [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! TIMES           [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! FDIV            [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! EXP             [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! MOD             [ reduce using rule 29 (expression -> expression NOTEQ expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 71
+
+    (41) expression -> expression MOD expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 41 (expression -> expression MOD expression .)
+    LTEQ            reduce using rule 41 (expression -> expression MOD expression .)
+    EQ              reduce using rule 41 (expression -> expression MOD expression .)
+    NOTEQ           reduce using rule 41 (expression -> expression MOD expression .)
+    GT              reduce using rule 41 (expression -> expression MOD expression .)
+    GTEQ            reduce using rule 41 (expression -> expression MOD expression .)
+    AND             reduce using rule 41 (expression -> expression MOD expression .)
+    OR              reduce using rule 41 (expression -> expression MOD expression .)
+    NOT             reduce using rule 41 (expression -> expression MOD expression .)
+    PLUS            reduce using rule 41 (expression -> expression MOD expression .)
+    MINUS           reduce using rule 41 (expression -> expression MOD expression .)
+    FDIV            reduce using rule 41 (expression -> expression MOD expression .)
+    EXP             reduce using rule 41 (expression -> expression MOD expression .)
+    MOD             reduce using rule 41 (expression -> expression MOD expression .)
+    RPAREN          reduce using rule 41 (expression -> expression MOD expression .)
+    SEMICOLON       reduce using rule 41 (expression -> expression MOD expression .)
+    LBRACKET        reduce using rule 41 (expression -> expression MOD expression .)
+    COMMA           reduce using rule 41 (expression -> expression MOD expression .)
+    RBRACKET        reduce using rule 41 (expression -> expression MOD expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+
+  ! TIMES           [ reduce using rule 41 (expression -> expression MOD expression .) ]
+  ! DIVIDE          [ reduce using rule 41 (expression -> expression MOD expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+  ! PLUS            [ shift and go to state 44 ]
+  ! MINUS           [ shift and go to state 33 ]
+  ! FDIV            [ shift and go to state 40 ]
+  ! EXP             [ shift and go to state 42 ]
+  ! MOD             [ shift and go to state 46 ]
+
+
+state 72
+
+    (31) expression -> expression GTEQ expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    LT              reduce using rule 31 (expression -> expression GTEQ expression .)
+    LTEQ            reduce using rule 31 (expression -> expression GTEQ expression .)
+    EQ              reduce using rule 31 (expression -> expression GTEQ expression .)
+    NOTEQ           reduce using rule 31 (expression -> expression GTEQ expression .)
+    GT              reduce using rule 31 (expression -> expression GTEQ expression .)
+    GTEQ            reduce using rule 31 (expression -> expression GTEQ expression .)
+    AND             reduce using rule 31 (expression -> expression GTEQ expression .)
+    OR              reduce using rule 31 (expression -> expression GTEQ expression .)
+    NOT             reduce using rule 31 (expression -> expression GTEQ expression .)
+    RPAREN          reduce using rule 31 (expression -> expression GTEQ expression .)
+    SEMICOLON       reduce using rule 31 (expression -> expression GTEQ expression .)
+    LBRACKET        reduce using rule 31 (expression -> expression GTEQ expression .)
+    COMMA           reduce using rule 31 (expression -> expression GTEQ expression .)
+    RBRACKET        reduce using rule 31 (expression -> expression GTEQ expression .)
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! PLUS            [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! MINUS           [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! TIMES           [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! FDIV            [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! EXP             [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! MOD             [ reduce using rule 31 (expression -> expression GTEQ expression .) ]
+  ! LT              [ shift and go to state 34 ]
+  ! LTEQ            [ shift and go to state 37 ]
+  ! EQ              [ shift and go to state 36 ]
+  ! NOTEQ           [ shift and go to state 45 ]
+  ! GT              [ shift and go to state 41 ]
+  ! GTEQ            [ shift and go to state 47 ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+  ! NOT             [ shift and go to state 43 ]
+
+
+state 73
+
+    (32) expression -> expression AND expression .
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    AND             reduce using rule 32 (expression -> expression AND expression .)
+    OR              reduce using rule 32 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 32 (expression -> expression AND expression .)
+    SEMICOLON       reduce using rule 32 (expression -> expression AND expression .)
+    LBRACKET        reduce using rule 32 (expression -> expression AND expression .)
+    COMMA           reduce using rule 32 (expression -> expression AND expression .)
+    RBRACKET        reduce using rule 32 (expression -> expression AND expression .)
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+  ! LT              [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! LTEQ            [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! EQ              [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! NOTEQ           [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! GT              [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! GTEQ            [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! NOT             [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! PLUS            [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! FDIV            [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! EXP             [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! MOD             [ reduce using rule 32 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 74
+
+    (13) conditional -> IF LPAREN expression RPAREN block .
+    (14) conditional -> IF LPAREN expression RPAREN block . else_if_blocks
+    (15) else_if_blocks -> . else_if_block
+    (16) else_if_blocks -> . else_if_block else_if_blocks
+    (17) else_if_block -> . ELSE block
+
+    WHILE           reduce using rule 13 (conditional -> IF LPAREN expression RPAREN block .)
+    VARIABLE        reduce using rule 13 (conditional -> IF LPAREN expression RPAREN block .)
+    IF              reduce using rule 13 (conditional -> IF LPAREN expression RPAREN block .)
+    PRINT           reduce using rule 13 (conditional -> IF LPAREN expression RPAREN block .)
+    RCURLYBRACE     reduce using rule 13 (conditional -> IF LPAREN expression RPAREN block .)
+    ELSE            shift and go to state 84
+
+    else_if_blocks                 shift and go to state 82
+    else_if_block                  shift and go to state 83
+
+state 75
+
+    (25) expr -> LPAREN expr RPAREN .
+
+    RPAREN          reduce using rule 25 (expr -> LPAREN expr RPAREN .)
+    LBRACKET        reduce using rule 25 (expr -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 25 (expr -> LPAREN expr RPAREN .)
+    RBRACKET        reduce using rule 25 (expr -> LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 25 (expr -> LPAREN expr RPAREN .)
+
+
+state 76
+
+    (18) expr -> LBRACKET list_elem RBRACKET .
+
+    RPAREN          reduce using rule 18 (expr -> LBRACKET list_elem RBRACKET .)
+    LBRACKET        reduce using rule 18 (expr -> LBRACKET list_elem RBRACKET .)
+    COMMA           reduce using rule 18 (expr -> LBRACKET list_elem RBRACKET .)
+    RBRACKET        reduce using rule 18 (expr -> LBRACKET list_elem RBRACKET .)
+    SEMICOLON       reduce using rule 18 (expr -> LBRACKET list_elem RBRACKET .)
+
+
+state 77
+
+    (23) list_tail -> COMMA . expr list_tail
+    (18) expr -> . LBRACKET list_elem RBRACKET
+    (19) expr -> . expr LBRACKET expression RBRACKET
+    (20) expr -> . LBRACKET RBRACKET
+    (21) expr -> . expression
+    (25) expr -> . LPAREN expr RPAREN
+    (26) expression -> . expression LT expression
+    (27) expression -> . expression LTEQ expression
+    (28) expression -> . expression EQ expression
+    (29) expression -> . expression NOTEQ expression
+    (30) expression -> . expression GT expression
+    (31) expression -> . expression GTEQ expression
+    (32) expression -> . expression AND expression
+    (33) expression -> . expression OR expression
+    (34) expression -> . expression NOT expression
+    (35) expression -> . expression PLUS expression
+    (36) expression -> . expression MINUS expression
+    (37) expression -> . expression TIMES expression
+    (38) expression -> . expression DIVIDE expression
+    (39) expression -> . expression FDIV expression
+    (40) expression -> . expression EXP expression
+    (41) expression -> . expression MOD expression
+    (42) expression -> . factor
+    (43) expression -> . string
+    (44) expression -> . VARIABLE
+    (45) factor -> . NUMBER
+    (46) string -> . STRING
+
+    LBRACKET        shift and go to state 28
+    LPAREN          shift and go to state 27
+    VARIABLE        shift and go to state 21
+    NUMBER          shift and go to state 26
+    STRING          shift and go to state 22
+
+    string                         shift and go to state 24
+    expr                           shift and go to state 85
+    expression                     shift and go to state 29
+    factor                         shift and go to state 25
+
+state 78
+
+    (22) list_elem -> expr list_tail .
+
+    RBRACKET        reduce using rule 22 (list_elem -> expr list_tail .)
+
+
+state 79
+
+    (19) expr -> expr LBRACKET expression . RBRACKET
+    (26) expression -> expression . LT expression
+    (27) expression -> expression . LTEQ expression
+    (28) expression -> expression . EQ expression
+    (29) expression -> expression . NOTEQ expression
+    (30) expression -> expression . GT expression
+    (31) expression -> expression . GTEQ expression
+    (32) expression -> expression . AND expression
+    (33) expression -> expression . OR expression
+    (34) expression -> expression . NOT expression
+    (35) expression -> expression . PLUS expression
+    (36) expression -> expression . MINUS expression
+    (37) expression -> expression . TIMES expression
+    (38) expression -> expression . DIVIDE expression
+    (39) expression -> expression . FDIV expression
+    (40) expression -> expression . EXP expression
+    (41) expression -> expression . MOD expression
+
+    RBRACKET        shift and go to state 86
+    LT              shift and go to state 34
+    LTEQ            shift and go to state 37
+    EQ              shift and go to state 36
+    NOTEQ           shift and go to state 45
+    GT              shift and go to state 41
+    GTEQ            shift and go to state 47
+    AND             shift and go to state 48
+    OR              shift and go to state 38
+    NOT             shift and go to state 43
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 33
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 39
+    FDIV            shift and go to state 40
+    EXP             shift and go to state 42
+    MOD             shift and go to state 46
+
+
+state 80
+
+    (10) print -> PRINT LPAREN expr RPAREN SEMICOLON .
+
+    WHILE           reduce using rule 10 (print -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    VARIABLE        reduce using rule 10 (print -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    IF              reduce using rule 10 (print -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    PRINT           reduce using rule 10 (print -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    RCURLYBRACE     reduce using rule 10 (print -> PRINT LPAREN expr RPAREN SEMICOLON .)
+
+
+state 81
+
+    (12) while -> WHILE LPAREN expression RPAREN block .
+
+    WHILE           reduce using rule 12 (while -> WHILE LPAREN expression RPAREN block .)
+    VARIABLE        reduce using rule 12 (while -> WHILE LPAREN expression RPAREN block .)
+    IF              reduce using rule 12 (while -> WHILE LPAREN expression RPAREN block .)
+    PRINT           reduce using rule 12 (while -> WHILE LPAREN expression RPAREN block .)
+    RCURLYBRACE     reduce using rule 12 (while -> WHILE LPAREN expression RPAREN block .)
+
+
+state 82
+
+    (14) conditional -> IF LPAREN expression RPAREN block else_if_blocks .
+
+    WHILE           reduce using rule 14 (conditional -> IF LPAREN expression RPAREN block else_if_blocks .)
+    VARIABLE        reduce using rule 14 (conditional -> IF LPAREN expression RPAREN block else_if_blocks .)
+    IF              reduce using rule 14 (conditional -> IF LPAREN expression RPAREN block else_if_blocks .)
+    PRINT           reduce using rule 14 (conditional -> IF LPAREN expression RPAREN block else_if_blocks .)
+    RCURLYBRACE     reduce using rule 14 (conditional -> IF LPAREN expression RPAREN block else_if_blocks .)
+
+
+state 83
+
+    (15) else_if_blocks -> else_if_block .
+    (16) else_if_blocks -> else_if_block . else_if_blocks
+    (15) else_if_blocks -> . else_if_block
+    (16) else_if_blocks -> . else_if_block else_if_blocks
+    (17) else_if_block -> . ELSE block
+
+    WHILE           reduce using rule 15 (else_if_blocks -> else_if_block .)
+    VARIABLE        reduce using rule 15 (else_if_blocks -> else_if_block .)
+    IF              reduce using rule 15 (else_if_blocks -> else_if_block .)
+    PRINT           reduce using rule 15 (else_if_blocks -> else_if_block .)
+    RCURLYBRACE     reduce using rule 15 (else_if_blocks -> else_if_block .)
+    ELSE            shift and go to state 84
+
+    else_if_blocks                 shift and go to state 87
+    else_if_block                  shift and go to state 83
+
+state 84
+
+    (17) else_if_block -> ELSE . block
+    (2) block -> . LCURLYBRACE RCURLYBRACE
+    (3) block -> . LCURLYBRACE stmt_tail RCURLYBRACE
+
+    LCURLYBRACE     shift and go to state 1
+
+    block                          shift and go to state 88
+
+state 85
+
+    (23) list_tail -> COMMA expr . list_tail
+    (19) expr -> expr . LBRACKET expression RBRACKET
+    (23) list_tail -> . COMMA expr list_tail
+    (24) list_tail -> .
+
+    LBRACKET        shift and go to state 54
+    COMMA           shift and go to state 77
+    RBRACKET        reduce using rule 24 (list_tail -> .)
+
+    list_tail                      shift and go to state 89
+
+state 86
+
+    (19) expr -> expr LBRACKET expression RBRACKET .
+
+    RPAREN          reduce using rule 19 (expr -> expr LBRACKET expression RBRACKET .)
+    LBRACKET        reduce using rule 19 (expr -> expr LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 19 (expr -> expr LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 19 (expr -> expr LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 19 (expr -> expr LBRACKET expression RBRACKET .)
+
+
+state 87
+
+    (16) else_if_blocks -> else_if_block else_if_blocks .
+
+    WHILE           reduce using rule 16 (else_if_blocks -> else_if_block else_if_blocks .)
+    VARIABLE        reduce using rule 16 (else_if_blocks -> else_if_block else_if_blocks .)
+    IF              reduce using rule 16 (else_if_blocks -> else_if_block else_if_blocks .)
+    PRINT           reduce using rule 16 (else_if_blocks -> else_if_block else_if_blocks .)
+    RCURLYBRACE     reduce using rule 16 (else_if_blocks -> else_if_block else_if_blocks .)
+
+
+state 88
+
+    (17) else_if_block -> ELSE block .
+
+    ELSE            reduce using rule 17 (else_if_block -> ELSE block .)
+    WHILE           reduce using rule 17 (else_if_block -> ELSE block .)
+    VARIABLE        reduce using rule 17 (else_if_block -> ELSE block .)
+    IF              reduce using rule 17 (else_if_block -> ELSE block .)
+    PRINT           reduce using rule 17 (else_if_block -> ELSE block .)
+    RCURLYBRACE     reduce using rule 17 (else_if_block -> ELSE block .)
+
+
+state 89
+
+    (23) list_tail -> COMMA expr list_tail .
+
+    RBRACKET        reduce using rule 23 (list_tail -> COMMA expr list_tail .)
+
